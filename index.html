@@ -1,0 +1,13 @@
+
+    {% assign ryviu = product.metafields.ryviu %}
+    {% if ryviu %}
+    {%- assign aggregateRating = ryviu.product_reviews_info | split: ";" -%}
+    {%- assign r_avg = aggregateRating[1] | plus: 0 -%}
+    {%- assign r_count = aggregateRating[0] | plus: 0 -%}
+    {%- if r_count > 0 -%}
+        <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <meta itemprop="ratingValue" content="{{ r_avg }}"/>
+            <meta itemprop="ratingCount" content="{{ r_count }}"/>
+        </div>
+    {%- endif -%}
+    {% endif %}
